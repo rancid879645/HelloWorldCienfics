@@ -1,0 +1,172 @@
+
+<h1>Body component</h1>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>*ngIf</h1>
+            <hr>
+            <div *ngIf="mostrar"  >
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"> {{ frase.autor }} </h5>
+                        <p class="card-text"> {{ frase.mensaje }} </p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-outline-primary btn-block" (click)="mostrar = !mostrar" >
+                Mostrar/Ocultar
+            </button>
+        </div>
+        <div class="col">
+            <h1>*ngFor</h1>
+            <hr>
+            <ul class="list-group">
+                <li *ngFor="let c of cientificos; let i = index" class="list-group-item">
+                    {{ i + 1 }} - {{ c }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class = "row">
+        <h3>Directiva ngSwith</h3>
+        <div [ngSwitch] = "dia">
+            <p *ngSwitchCase="1"> Lunes </p>
+            <p *ngSwitchCase="2"> Martes </p>
+            <p *ngSwitchCase="3"> Miercoles </p>
+            <p *ngSwitchCase="4"> Jueves </p>
+            <p *ngSwitchCase="5"> Viernes </p>
+            <p *ngSwitchCase="6"> Sabado </p>
+            <p *ngSwitchCase="7"> Domingo </p>
+            <p *ngSwitchDefault> Dato no valido </p>
+        </div> 
+        <br>
+            <button class="btn btn-outline-primary btn-block" (click)="dia  = dia - 1 " >
+                Atras
+            </button>
+            <button class="btn btn-outline-primary btn-block" (click)="dia = dia + 1" >
+                Adelante
+            </button>
+
+    </div>
+    <hr>
+    <div class = "row">
+        <h3>Directiva personalizada</h3>
+
+        <p appHighlight>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap 
+            into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum 
+            passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+    </div>
+    <hr>
+    <div class = "row">
+        <h3>Directiva ngClass</h3>
+
+        <p [ngClass]="mostrar ? 'red': 'blue'"> 
+            Este parrafo de texto puede sufrir cambios en los estilos por medio de una directiva ngClass
+        </p>
+
+        <p [ngClass]="changeStyles()"> 
+            Este parrafo de texto puede sufrir cambios en los estilos por medio de una directiva ngClass
+        </p>
+    </div>
+
+    <hr>
+    <div class = "row">
+        <h3>Directiva ngTemplate</h3>
+        <br>
+        <button class="btn btn-outline-primary btn-block" (click)="loadData = !loadData" >
+            Cargar datos
+        </button>
+        <br>
+        <div *ngIf="!loadData; else cargando">
+            <div>
+                En esta zona se va a inyectar un template de forma dinamica.
+            </div>
+        </div>
+
+        <ng-template #cargando>
+            <div>
+                <p>
+                    Esta es un plantilla HTML que se inyecta dinamicamente cuando se esta cargando datos
+                </p>
+            </div>
+        </ng-template>
+    </div>
+    <hr>
+    <div class = "row">
+        <h3>Directiva ngContainer</h3>
+        <br>
+        <ng-container *ngIf="!loadData">
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap 
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum 
+                passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+        </ng-container>
+    </div>
+    <hr>
+    <div class = "row">
+        <h3>Directiva ngTemplateOutlet</h3>
+        <br>
+
+        <ng-container *ngTemplateOutlet="cargando"></ng-container>
+        <p>
+            Aqui tenemos mas codigo HTML
+        </p>
+        <ng-container *ngTemplateOutlet="cargando"></ng-container>
+        <p>
+            Aqui tenemos mas codigo HTML
+        </p>
+        <ng-container *ngTemplateOutlet="cargando"></ng-container>
+        <p>
+            Aqui tenemos mas codigo HTML
+        </p>
+        <ng-container *ngTemplateOutlet="cargando"></ng-container>
+        <p>
+            Aqui tenemos mas codigo HTML
+        </p>
+    </div>
+    <hr>
+    <div class = "row">
+        <h3>Directiva ngModel</h3>
+        <br>
+
+        <div>
+            <p>Introduzca su email:</p>
+            <input type="text" id="emailUser" name="emailUser" [ngModel] = "email" (ngModelChange)="inputChange($event)">
+            <p>
+                Usted ha escrito esto: {{ email }}
+            </p>
+        </div>
+        <div>
+            <p>Introduzca su email:</p>
+            <input type="text" id="emailUser02" name="emailUser02" [(ngModel)] = "email"  >
+            <p>
+                Usted ha escrito esto: {{ email }}
+            </p>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+</div>
